@@ -13,8 +13,12 @@ public class ALUControl {
     // int/binary to instruction
     private int ALUInput;
 
-    // FIXME: might need to put in a seperate function, not constructor
-    public ALUControl (String funct, Control control) {
+    public ALUControl() {
+        ALUInput = 0;
+    }
+
+    // creates the ALU control input but does not return it
+    public void createALUInput(String funct, Control control) {
         // transform control input into int for easier consumption in switch
         int ALUOp;
         if(control.getALUOp1() == true && control.getALUOp0() == true) {
@@ -28,28 +32,28 @@ public class ALUControl {
         // use switch to hardcode ALUInput
         switch(ALUOp) {
             case 0b00:
-                ALUInput = 0b0010;
+                ALUInput = 0b0010; // add
                 break;
             case 0b01:
-                ALUInput = 0b0110;
+                ALUInput = 0b0110; // sub
                 break;
             case 0b11:
                 // another switch statement to differentiate R-type funct
                 switch(funct) {
                     case "100000":
-                        ALUInput = 0b0010;
+                        ALUInput = 0b0010; // add
                         break;
                     case "100010":
-                        ALUInput = 0b0110;
+                        ALUInput = 0b0110; // sub
                         break;
                     case "100100":
-                        ALUInput = 0b0000;
+                        ALUInput = 0b0000; // and
                         break;
                     case "100101":
-                        ALUInput = 0b0001;
+                        ALUInput = 0b0001; // or
                         break;
                     case "101010":
-                        ALUInput = 0b0111;
+                        ALUInput = 0b0111; // set on less than
                         break;
                 }
                 break;
@@ -60,5 +64,9 @@ public class ALUControl {
 
     public int getALUInput() {
         return ALUInput;
+    }
+
+    public void reset() {
+        ALUInput = 0;
     }
 }
