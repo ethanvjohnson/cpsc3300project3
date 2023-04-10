@@ -14,8 +14,9 @@ public class Registers {
         registers[0] = 0;
     }
 
-    public void setRegister(int regNum, int value) {
-        registers[regNum] = value;
+    public void setRegister(int regNum, int value, boolean regWrite) {
+        if(regWrite) registers[regNum] = value;
+        // else, do nothing
     }
 
     public int getRegister(int regNum) {
