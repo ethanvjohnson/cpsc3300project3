@@ -15,7 +15,7 @@ public class Control {
     private boolean ALUOp0;
     private boolean jump;
 
-    public Control(){
+    public Control() {
         regDst = false;
         regWrite = false;
         ALUSrc = false;
@@ -29,8 +29,7 @@ public class Control {
         jump = false;
     }
 
-
-    public void opcodeDecode(String opcodeString){
+    public void opcodeDecode(String opcodeString) {
         switch (opcodeString) {
             // arithmetic/R-format
             case "000000":
@@ -39,30 +38,30 @@ public class Control {
                 ALUOp1 = true;
                 break;
             // j
-            case "000010": 
-                jump = true; 
+            case "000010":
+                jump = true;
                 break;
             // beq
-            case "000100": 
+            case "000100":
                 branch = true;
                 ALUOp0 = true;
                 break;
             // lw
-            case "100010": 
+            case "100010":
                 ALUSrc = true;
                 memtoReg = true;
                 regWrite = true;
                 memRead = true;
                 break;
             // sw
-            case "101011": 
+            case "101011":
                 ALUSrc = true;
                 MemWrite = true;
-                break;                                
+                break;
         }
     }
 
-    public void reset(){
+    public void reset() {
         regDst = false;
         regWrite = false;
         ALUSrc = false;
@@ -77,15 +76,47 @@ public class Control {
     }
 
     // getter functions
-    public boolean getRegDst() { return this.regDst; }
-    public boolean getRegWrite() { return this.regWrite; }
-    public boolean getALUSrc() { return this.ALUSrc; }
-    public boolean getPCSrc() { return this.PCSrc; }
-    public boolean getMemRead() { return this.memRead; }
-    public boolean getMemWrite() { return this.MemWrite; }
-    public boolean getMemtoReg() { return this.memtoReg; }
-    public boolean getBranch() { return this.branch; }
-    public boolean getALUOp1() { return this.ALUOp1; }  
-    public boolean getALUOp0() { return this.ALUOp0; }
-    public boolean getJump() { return this.jump; }
+    public boolean getRegDst() {
+        return this.regDst;
+    }
+
+    public boolean getRegWrite() {
+        return this.regWrite;
+    }
+
+    public boolean getALUSrc() {
+        return this.ALUSrc;
+    }
+
+    public boolean getPCSrc() {
+        return this.PCSrc;
+    }
+
+    public boolean getMemRead() {
+        return this.memRead;
+    }
+
+    public boolean getMemWrite() {
+        return this.MemWrite;
+    }
+
+    public boolean getMemtoReg() {
+        return this.memtoReg;
+    }
+
+    public boolean getBranch() {
+        return this.branch;
+    }
+
+    public boolean getALUOp1() {
+        return this.ALUOp1;
+    }
+
+    public boolean getALUOp0() {
+        return this.ALUOp0;
+    }
+
+    public boolean getJump() {
+        return this.jump;
+    }
 }

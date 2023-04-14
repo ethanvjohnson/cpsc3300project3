@@ -132,6 +132,9 @@ public class Controller {
         // Reset control values
         control.reset();
         aluControl.reset();
+
+        // Display the scoreboard
+        view.displayScoreboard();
     }
 
 }

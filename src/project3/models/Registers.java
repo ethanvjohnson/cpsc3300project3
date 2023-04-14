@@ -9,13 +9,14 @@ public class Registers {
     private int[] registers;
 
     // constructor
-    public Registers(){
+    public Registers() {
         registers = new int[32];
         registers[0] = 0;
     }
 
     public void setRegister(int regNum, int value, boolean regWrite) {
-        if(regWrite) registers[regNum] = value;
+        if (regWrite)
+            registers[regNum] = value;
         // else, do nothing
     }
 
