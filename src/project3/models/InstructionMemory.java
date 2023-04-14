@@ -9,6 +9,7 @@ import java.lang.StringBuilder;
  */
 public class InstructionMemory {
     private String data;
+    private int numInstructions;
 
     public InstructionMemory(String fileName) throws Exception {
         InputStream inputStream = new FileInputStream(fileName);
@@ -28,7 +29,8 @@ public class InstructionMemory {
 
         // Store the converted data
         data = sb.toString();
-
+        numInstructions = data.length();
+        System.out.println(numInstructions);
         inputStream.close();
     }
 

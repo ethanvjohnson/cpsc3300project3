@@ -10,13 +10,14 @@ package project3.models;
 public class ProgramCounter {
     private int address;
 
-    public ProgramCounter(){
+    public ProgramCounter() {
         address = 0x0;
     }
 
     public int getAddress() {
         return address;
     }
+
     public void setAddress(int address) {
         this.address = address;
     }
