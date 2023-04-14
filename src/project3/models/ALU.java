@@ -15,7 +15,7 @@ public class ALU {
 
     public int arithmetic(int reg1, int reg2, int ALUControlInput) {
         int result = 0;
-        switch(ALUControlInput) {
+        switch (ALUControlInput) {
             case 0b0000: // AND
                 result = reg1 & reg2;
                 break;
@@ -29,17 +29,23 @@ public class ALU {
                 result = reg1 - reg2;
                 break;
             case 0b0111: // set on less than
-                if (reg1 < reg2) result = 1;
-                else result = 0;
+                if (reg1 < reg2)
+                    result = 1;
+                else
+                    result = 0;
                 break;
             default:
                 System.err.println("ERROR. NOT VALID ALUOp");
         }
 
-        if(result == 0) this.zero = true;
-        else this.zero = false;
+        if (result == 0)
+            this.zero = true;
+        else
+            this.zero = false;
         return result;
     }
 
-    public boolean getZero() { return this.zero; }
+    public boolean getZero() {
+        return this.zero;
+    }
 }
