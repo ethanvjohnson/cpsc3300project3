@@ -1,14 +1,15 @@
 package project3.views;
+
 import project3.controllers.*;
 
 public class Scoreboard {
     Controller controller;
 
-    public void setController(Controller c){
+    public void setController(Controller c) {
         controller = c;
     }
 
-    public void displayScoreboard(){
+    public void displayScoreboard() {
 
     }
 }
