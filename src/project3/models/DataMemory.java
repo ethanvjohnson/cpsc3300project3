@@ -1,5 +1,7 @@
 package project3.models;
+
 import java.util.HashMap; // import the HashMap class
+import java.util.Random;
 /* 
  * Kind of a weird unit to have as we have to emulate memory but we do not
  * actually have data in this memory beforehand.
@@ -13,12 +15,19 @@ import java.util.HashMap; // import the HashMap class
  * are both dictonary / map / associative array data structure and the naming is
  * purely semantic in our case.
  */
+
 public class DataMemory {
     private HashMap<Integer, Integer> memory;
 
     // constructor
     public DataMemory() {
+        Random rand = new Random();
         memory = new HashMap<Integer, Integer>();
+
+        // populate 4kb of memory with random values
+        for (int i = 0; i < 4096; i++) {
+            memory.put(i, rand.nextInt(255));
+        }
     }
 
     // other functions

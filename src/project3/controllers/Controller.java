@@ -36,13 +36,102 @@ import project3.models.*;
  * Begin anew
  *   
  */
+
 public class Controller {
-
-
     private Scoreboard view;
 
-
-    public Controller(Scoreboard v){
+    public Controller(Scoreboard v) {
         view = v;
     }
+
+    // TODO: Modify to run the entire program (currently only runs one instruction)
+    public void runProgram(String filename) throws Exception {
+        // Create CPU objects
+        ProgramCounter pc = new ProgramCounter();
+        Control control = new Control();
+        Registers registers = new Registers();
+        ALU alu = new ALU();
+        ALUControl aluControl = new ALUControl();
+        DataMemory dataMemory = new DataMemory();
+        InstructionMemory instructions = new InstructionMemory(filename);
+
+        // Use the pc to get the next instruction
+        Instruction currInstruction = instructions.getInstruction(pc.getAddress());
+
+        // Decode instruction opcode and set control values
+        control.opcodeDecode(currInstruction.getOpcode());
+
+        // Set up to deal with registers
+        int readReg1 = currInstruction.getRs();
+        int readReg2 = currInstruction.getRt();
+
+        int writeReg;
+        if (control.getRegDst()) {
+            writeReg = currInstruction.getRd();
+        } else {
+            writeReg = readReg2;
+        }
+
+        // Setup ALU control
+        aluControl.createALUInput(currInstruction.getFunct(), control);
+
+        // Sign extend instruction address
+        int address = (int) currInstruction.getAddress();
+
+        // Setup ALU inputs
+        int aluInput1 = registers.getRegister(readReg1);
+        int aluInput2;
+
+        if (control.getALUSrc()) {
+            aluInput2 = address;
+        } else {
+            aluInput2 = registers.getRegister(readReg2);
+        }
+
+        // ALU operation
+        int memALUResult = alu.arithmetic(aluInput1, aluInput2, aluControl.getALUInput());
+
+        // Data Memory
+        int memAddress = memALUResult;
+        int writeData = readReg2;
+
+        int memReadResult = 0;
+
+        if (control.getMemWrite()) {
+            dataMemory.addData(memAddress, writeData);
+        }
+        if (control.getMemRead()) {
+            memReadResult = dataMemory.getData(memAddress);
+        }
+
+        // Write Back
+        int writeBack;
+
+        if (control.getMemtoReg()) {
+            writeBack = memReadResult;
+        } else {
+            writeBack = memALUResult;
+        }
+
+        if (control.getRegWrite()) {
+            registers.setRegister(writeReg, writeBack, control.getRegWrite());
+        }
+
+        // Set the new PC value
+        int nextAddress = alu.arithmetic(pc.getAddress(), 4, 0b0010);
+
+        int jumpOffset = address << 2;
+        int newJumpAddress = alu.arithmetic(nextAddress, jumpOffset, 0b0010);
+
+        if (control.getPCSrc()) {
+            pc.setAddress(newJumpAddress);
+        } else {
+            pc.setAddress(nextAddress);
+        }
+
+        // Reset control values
+        control.reset();
+        aluControl.reset();
+    }
+
 }

@@ -21,25 +21,27 @@ public class ALUControl {
     public void createALUInput(String funct, Control control) {
         // transform control input into int for easier consumption in switch
         int ALUOp;
-        if(control.getALUOp1() == true && control.getALUOp0() == true) {
+        if (control.getALUOp1() == true && control.getALUOp0() == true) {
             ALUOp = 0b11;
-        } else if(control.getALUOp1() == true) {
+        } else if (control.getALUOp1() == true) {
             ALUOp = 0b10;
-        } else if(control.getALUOp0() == true) {
+        } else if (control.getALUOp0() == true) {
             ALUOp = 0b01;
-        } else ALUOp = 0b00;
+        } else
+            ALUOp = 0b00;
 
         // use switch to hardcode ALUInput
-        switch(ALUOp) {
+        switch (ALUOp) {
             case 0b00:
                 ALUInput = 0b0010; // add
                 break;
             case 0b01:
                 ALUInput = 0b0110; // sub
                 break;
+            case 0b10:
             case 0b11:
                 // another switch statement to differentiate R-type funct
-                switch(funct) {
+                switch (funct) {
                     case "100000":
                         ALUInput = 0b0010; // add
                         break;
