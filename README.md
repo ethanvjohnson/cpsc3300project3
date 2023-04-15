@@ -3,6 +3,10 @@ This project (Project 3 of Clemson's CPSC 3300) was a collaboration between:
 * Christian Scott (cfscott@clemson.edu)
 * Ethan Johnson (evj@clemson.edu)
 
+# Running the Program
+Since we did this project (as per specification recommendation) in Java, we could not easily compile a executable. Thus, this program is best run using the makefile. The command to run it is:
+> make run file=<input_binary_file>
+
 # Project Specifications
 This project was a simulation of a single cycle CPU implemented in *MIPS*. We used a very limited instruction set of nine instructions: 
 * Load word
