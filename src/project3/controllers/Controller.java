@@ -8,8 +8,6 @@ import project3.models.*;
  * Initialize all the models
  * 
  * Load the file into the instruction memory 
- * FIXME: project doc said we might not need distinct instruction and data memories?
- * FIXME: Idk, work with what makes sense.
  * 
  * Using the address from the program counter, get the next instruction
  *     Increment the address in PC by 4 (maybe using dedicated ALU?) and
@@ -149,6 +147,9 @@ public class Controller {
             // Reset control values
             control.reset();
             aluControl.reset();
+
+            view.updateCycles();
+            view.updateInstructionNum(instructions.getNumInstructions());
 
             // Display the scoreboard
             view.displayScoreboard();

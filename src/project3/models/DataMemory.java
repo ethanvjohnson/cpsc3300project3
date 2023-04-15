@@ -1,14 +1,9 @@
 package project3.models;
 
-import java.util.Random;
 /* 
  * Kind of a weird unit to have as we have to emulate memory but we do not
  * actually have data in this memory beforehand.
  * 
- * I think a simple solution is a dictonary of key:value pairs
- * where the key is the address and the value is the data
- * being stored. That way we can access values we have inputted and overwrite
- * and such.
  * 
  * The dictonary class is obsolete in Java and HashMap is now used. They
  * are both dictonary / map / associative array data structure and the naming is
@@ -27,12 +22,11 @@ public class DataMemory {
     public DataMemory(Scoreboard view) {
         this.view = view;
 
-        Random rand = new Random();
         memory = new int[DATASIZE];
 
         // populate 4kb of memory with random values
         for (int i = 0; i < DATASIZE; i++) {
-            addData(i, rand.nextInt(255));
+            memory[i] = (i % 255);
         }
     }
 

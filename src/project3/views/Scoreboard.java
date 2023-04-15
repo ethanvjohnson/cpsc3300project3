@@ -27,30 +27,47 @@ public class Scoreboard {
     }
 
     public void displayScoreboard() {
-        System.out.println("==========  SCOREBOARD  ==========");
+        System.out.println("===============  SCOREBOARD  ===============");
         System.out.println("Current Instruction = " + instructionNum);
 
         System.out.println("Cycles = " + cycles);
-        System.out.println("PC = " + pc);
+        System.out.println("PC = " + String.format("0x%08X", pc));
 
         // print out contents of all the registers
+        System.out.println();
         System.out.println("CONTENT OF REGISTERS");
         for (int i = 0; i < 32; i++) {
-            System.out.printf("Reg%d = %d, ", i, regs[i]);
-            if (i % 8 == 0)
+            System.out.printf("Reg%02d = %03d, ", i, regs[i]);
+            if ((i + 1) % 8 == 0)
                 System.out.println();
         }
 
+        // print out memory of all the memory
+        System.out.println();
+        System.out.println("CONTENT OF MEMORY");
+        for (int i = 0; i < 4096; i++) {
+            if ((i % 32) == 0) {
+                if (i != 0) {
+                    System.out.println();
+                }
+                System.out.printf("%08X: ", i);
+            }
+            System.out.printf("%02X ", memory[i]);
+        }
+        System.out.println();
+
         // print out all the ALU Operations
-        System.out.println("Number of ALU Operations");
+        System.out.println();
+        System.out.println("NUMBER OF ALU OPERATIONS");
         System.out.printf("AND = %d, OR = %d, Add = %d, sub = %d, slt = %d%n",
                 aluOps[0], aluOps[1], aluOps[2], aluOps[3], aluOps[4]);
 
         // print out all the memory operations
-        System.out.println("Number of Memory Operations");
+        System.out.println();
+        System.out.println("NUMBER OF MEMORY OPERATIONS");
         System.out.printf("Memory Reads = %d%n", memReads);
         System.out.printf("Memory Writes = %d%n", memWrites);
-        System.out.println("==================================");
+        System.out.println("============================================");
     }
 
     public void updatePC(int address) {
