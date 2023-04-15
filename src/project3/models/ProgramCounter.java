@@ -1,5 +1,7 @@
 package project3.models;
 
+import project3.views.Scoreboard;
+
 /* Pretty minimal class. Only really needs to store the address of the next 
  * instruction. 
  * 
@@ -8,10 +10,13 @@ package project3.models;
  * controller in this project. 
  */
 public class ProgramCounter {
+    // address is in bytes
     private int address;
+    Scoreboard view;
 
-    public ProgramCounter() {
+    public ProgramCounter(Scoreboard view) {
         address = 0x0;
+        this.view = view;
     }
 
     public int getAddress() {
@@ -20,5 +25,7 @@ public class ProgramCounter {
 
     public void setAddress(int address) {
         this.address = address;
+        view.updatePC(address);
     }
+
 }
