@@ -21,7 +21,7 @@ default: classes
 classes: $(CLASSES:.java=.class)
 
 run: classes
-	java project3.CPUApp output.dat
+	java project3.CPUApp $(file)
 
 clean:
 	$(RM) *.class
