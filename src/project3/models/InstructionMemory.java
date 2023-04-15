@@ -21,7 +21,6 @@ public class InstructionMemory {
         inputStream.read(fileData);
 
         // Convert binary data into "binary" string
-        // (print statements used for testing only)
         StringBuilder sb = new StringBuilder();
         for (int i = 0; i < (int) fileSize; i++) {
             sb.append(binToString(fileData[i]));
@@ -29,8 +28,7 @@ public class InstructionMemory {
 
         // Store the converted data
         data = sb.toString();
-        numInstructions = data.length();
-        System.out.println(numInstructions);
+        numInstructions = data.length() / 32;
         inputStream.close();
     }
 
@@ -110,5 +108,9 @@ public class InstructionMemory {
 
         result = new String(str);
         return result;
+    }
+
+    public int getNumInstructions() {
+        return numInstructions;
     }
 }

@@ -1,6 +1,5 @@
 package project3.models;
 
-import java.util.HashMap; // import the HashMap class
 import java.util.Random;
 /* 
  * Kind of a weird unit to have as we have to emulate memory but we do not
@@ -16,30 +15,37 @@ import java.util.Random;
  * purely semantic in our case.
  */
 
+import project3.views.Scoreboard;
+
 public class DataMemory {
-    private HashMap<Integer, Integer> memory;
+    private int[] memory;
+    // size of the memory block, in this case 4kb
+    private static int DATASIZE = 4096;
+    Scoreboard view;
 
     // constructor
-    public DataMemory() {
+    public DataMemory(Scoreboard view) {
+        this.view = view;
+
         Random rand = new Random();
-        memory = new HashMap<Integer, Integer>();
+        memory = new int[DATASIZE];
 
         // populate 4kb of memory with random values
-        for (int i = 0; i < 4096; i++) {
-            memory.put(i, rand.nextInt(255));
+        for (int i = 0; i < DATASIZE; i++) {
+            addData(i, rand.nextInt(255));
         }
     }
 
     // other functions
     public void addData(int address, int data) {
-        memory.put(address, data);
+        memory[address] = data;
+        view.updateMemory(address, data);
+        view.updateMemWrites();
+
     }
 
     public int getData(int address) {
-        return memory.get(address);
-    }
-
-    public void resetData() {
-        memory.clear();
+        view.updateMemReads();
+        return memory[address];
     }
 }

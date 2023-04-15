@@ -1,18 +1,13 @@
-## Getting Started
+# Authors
+This project (Project 3 of CPSC 3300) was a collaboration between:
+Christian Scott (cfscott@clemson.edu)
+Ethan Johnson (evj@clemson.edu)
 
-Welcome to the VS Code Java world. Here is a guideline to help you get started to write Java code in Visual Studio Code.
+# Design Decisions
 
-## Folder Structure
+There are a couple of important things to note regarding our design decisions for this project:
+- We followed the MVC paradigm when designing our program.
+    * All the discrete logical units were **models** (ALU, ALUControl, Control, Registers, etc.)
+    * Our **controller** is the equivalent of all our hardware circuits and logic implemented in hardware. This includes all the 
 
-The workspace contains two folders by default, where:
 
-- `src`: the folder to maintain sources
-- `lib`: the folder to maintain dependencies
-
-Meanwhile, the compiled output files will be generated in the `bin` folder by default.
-
-> If you want to customize the folder structure, open `.vscode/settings.json` and update the related settings there.
-
-## Dependency Management
-
-The `JAVA PROJECTS` view allows you to manage your dependencies. More details can be found [here](https://github.com/microsoft/vscode-java-dependency#manage-dependencies).
