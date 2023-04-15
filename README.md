@@ -1,7 +1,7 @@
 # Authors
 This project (Project 3 of Clemson's CPSC 3300) was a collaboration between:
-Christian Scott (cfscott@clemson.edu)
-Ethan Johnson (evj@clemson.edu)
+* Christian Scott (cfscott@clemson.edu)
+* Ethan Johnson (evj@clemson.edu)
 
 # Project Specifications
 This project was a simulation of a single cycle CPU implemented in *MIPS*. We used a very limited instruction set of nine instructions: 
