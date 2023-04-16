@@ -149,7 +149,7 @@ public class Controller {
             aluControl.reset();
 
             view.updateCycles();
-            view.updateInstructionNum(instructions.getNumInstructions());
+            view.updateInstructionNum(pc.getAddress() / 4);
 
             // Display the scoreboard
             view.displayScoreboard();

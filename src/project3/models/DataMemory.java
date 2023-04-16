@@ -26,7 +26,8 @@ public class DataMemory {
 
         // populate 4kb of memory with random values
         for (int i = 0; i < DATASIZE; i++) {
-            memory[i] = (i % 255);
+            memory[i] = (i % 256);
+            view.updateMemory(i, (i % 256));
         }
     }
 
