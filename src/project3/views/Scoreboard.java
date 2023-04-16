@@ -33,6 +33,19 @@ public class Scoreboard {
         System.out.println("Cycles = " + cycles);
         System.out.println("PC = " + String.format("0x%08X", pc));
 
+        // print out all the ALU Operations
+        System.out.println();
+        System.out.println("NUMBER OF ALU OPERATIONS");
+        System.out.printf("AND = %d, OR = %d, Add = %d, sub = %d, slt = %d%n",
+                aluOps[0], aluOps[1], aluOps[2], aluOps[3], aluOps[4]);
+
+        // print out all the memory operations
+        System.out.println();
+        System.out.println("NUMBER OF MEMORY OPERATIONS");
+        System.out.printf("Memory Reads = %d%n", memReads);
+        System.out.printf("Memory Writes = %d%n", memWrites);
+        System.out.println("============================================");
+
         // print out contents of all the registers
         System.out.println();
         System.out.println("CONTENT OF REGISTERS");
@@ -56,18 +69,6 @@ public class Scoreboard {
         }
         System.out.println();
 
-        // print out all the ALU Operations
-        System.out.println();
-        System.out.println("NUMBER OF ALU OPERATIONS");
-        System.out.printf("AND = %d, OR = %d, Add = %d, sub = %d, slt = %d%n",
-                aluOps[0], aluOps[1], aluOps[2], aluOps[3], aluOps[4]);
-
-        // print out all the memory operations
-        System.out.println();
-        System.out.println("NUMBER OF MEMORY OPERATIONS");
-        System.out.printf("Memory Reads = %d%n", memReads);
-        System.out.printf("Memory Writes = %d%n", memWrites);
-        System.out.println("============================================");
     }
 
     public void updatePC(int address) {
